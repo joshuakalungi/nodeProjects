@@ -4,7 +4,7 @@
   "description": "A simple express js setup",
   "main": "index.js",
   "scripts": {
-  "frappe":"nodemon app.js"
+    "start":"nodemon app.js"
   },
   "author": "",
   "license": "ISC",
