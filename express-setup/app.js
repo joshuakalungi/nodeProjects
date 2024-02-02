@@ -2,6 +2,9 @@ console.log("everything was a success")
 
 
 const http = require('http')
+const { readFileSync } = require('fs');
+
+const homePage = readFileSync('./index.html')
 
 const server = http.createServer((req,res)=> {
     console.log("user hit the server")
@@ -14,7 +17,7 @@ const server = http.createServer((req,res)=> {
         res.writeHead(200, {"content-type":"text/html"})
 
         // passing the data
-        res.write('<h1>homepage</h1>')
+        res.write(homePage)
         // signal that the communication is over
         res.end();
     }else if(url === '/about'){
