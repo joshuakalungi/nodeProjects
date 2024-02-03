@@ -1,9 +1,14 @@
 const express = require('express')
+const path = require('path')
 const app = express()
+
+// working with static resources
+app.use(express.static('./public'))
 
 // app.get() method is used to send data to the client
 app.get('/',(req,res)=> {
-    res.send('Home Page')
+    res.sendFile(path.resolve(__dirname,'./navbar-app/index.html'))
+    // res.status(200).send('Home Page')
 })
 
 // app.get() method is used to send data to the client
