@@ -1,42 +1,21 @@
-console.log("everything was a success")
+const express = require('express')
+const app = express()
 
-
-const http = require('http')
-const { readFileSync } = require('fs');
-
-const homePage = readFileSync('./index.html')
-
-const server = http.createServer((req,res)=> {
-    console.log("user hit the server")
-
-    // request url
-    const url = req.url;
-
-    if(url === '/'){
-        // passing response data
-        res.writeHead(200, {"content-type":"text/html"})
-
-        // passing the data
-        res.write(homePage)
-        // signal that the communication is over
-        res.end();
-    }else if(url === '/about'){
-        // passing response data
-        res.writeHead(200, {"content-type":"text/html"})
-
-        // passing the data
-        res.write('<h1>about page</h1>')
-        // signal that the communication is over
-        res.end()
-    }else{
-        // passing response data
-        res.writeHead(404, {"content-type":"text/html"})
-
-        // passing the data
-        res.write('<h1>page not found</h1>')
-        // signal that the communication is over
-        res.end()
-    }
+// app.get() method is used to send data to the client
+app.get('/',(req,res)=> {
+    res.send('Home Page')
 })
 
-server.listen(5000)
+// app.get() method is used to send data to the client
+app.get('/about',(req,res)=> {
+    res.send('About Page')
+})
+
+// app.all() method is used to send data to the client
+app.all('*',(req,res)=> {
+    res.send('<h1>Page not found</h1>')
+})
+
+app.listen(5000, () => {
+    console.log('Server is listening on port 5000...')
+})
